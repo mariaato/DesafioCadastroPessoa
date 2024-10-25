@@ -26,7 +26,7 @@ function addPessoa($nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cidade,
     return "Pessoa cadastrada com sucesso!";
 }
 
-function editPessoa($id, $nome, $cpf) {
+function editPessoa($id, $nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cidade, $estado, $telefone, $email) {
     foreach ($_SESSION['pessoas'] as &$pessoa) {
         if ($pessoa['id'] === $id) {
             $pessoa['nome'] = $nome;
@@ -61,9 +61,24 @@ function deletePessoa($id) {
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Pessoas</title>
+    <style>
+        header{
+            text-align:center;
+            justify-content: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+    </style>
 </head>
 <body>
+<header>
     <h1>Cadastro de Pessoas</h1>
+    <form method="POST" style="margin-top: 50px;">
+        <button type="submit" name="finalizar_sessao">Finalizar Sessão</button>
+    </form>
+</header>
+
+
     <form method="POST">
         <label for="Nome">Nome completo</label>
         <input type="text" name="nome" class="form-control" placeholder="Digite seu nome completo" required>
@@ -113,9 +128,7 @@ function deletePessoa($id) {
         <button type="submit" name="action" value="cadastrar">Cadastrar</button>
     </form>
 
-    <form method="POST" style="margin-top: 20px;">
-        <button type="submit" name="finalizar_sessao">Finalizar Sessão</button>
-    </form>
+   
 
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -183,6 +196,42 @@ function deletePessoa($id) {
             </tr>
             <?php endforeach; ?>
         </table>
+
+        <h1> Editar </h1>
+        <table>
+            <tr>
+                <th>Nome Completo</th>
+                <th>CPF</th>
+                <th>Data Nascimento</th>
+                <th>Gênero</th>
+                <th>Estado Civil</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Telefone</th>
+                <th>Email</th>
+            </tr>
+            <?php foreach ($pessoas as $pessoa): ?>
+            <tr>
+                <form method="POST">
+                    <input type="hidden" name="id" value="<?php echo $pessoa['id']; ?>">
+                    <td><input type="text" name="nome" value="<?php echo htmlspecialchars($pessoa['nome']); ?>"></td>
+                    <td><input type="text" name="cpf" value="<?php echo htmlspecialchars($pessoa['cpf']); ?>"></td>
+                    <td><input type="date" name="dataNascimento" value="<?php echo htmlspecialchars($pessoa['dataNascimento']); ?>"></td>
+                    <td><input type="text" name="genero" value="<?php echo htmlspecialchars($pessoa['genero']); ?>"></td>
+                    <td><input type="text" name="estadoCivil" value="<?php echo htmlspecialchars($pessoa['estadoCivil']); ?>"></td>
+                    <td><input type="text" name="cidade" value="<?php echo htmlspecialchars($pessoa['cidade']); ?>"></td>
+                    <td><input type="text" name="estado" value="<?php echo htmlspecialchars($pessoa['estado']); ?>"></td>
+                    <td><input type="text" name="telefone" value="<?php echo htmlspecialchars($pessoa['telefone']); ?>"></td>
+                    <td><input type="email" name="email" value="<?php echo htmlspecialchars($pessoa['email']); ?>"></td>
+
+
+                    <td><button type="submit" name="action" value="atualizar">Salvar</button></td>
+                    <td><button type="submit" name="action" value="deletar">Deletar</button></td>
+                </form>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+
     <?php else: ?>
         <p>Nenhuma pessoa cadastrada.</p>
     <?php endif; ?>
