@@ -9,8 +9,8 @@ body {
     color: #333;
 }
 
-h1, h2 {
-    color: #333;
+h1 {
+    color: hsl(0, 0%, 100%);
 }
 header {
     width: 100%;
@@ -52,7 +52,7 @@ label {
 
 input[type="text"], input[type="date"], select {
     padding: 8px;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -79,7 +79,7 @@ input[type="text"], input[type="date"], select {
 
 .logout-button {
     position: absolute;
-    top: 6.5%;
+    top: 5.7%;
     right: 20px;
     transform: translateY(-50%);
     background-color: #429E72;
@@ -94,7 +94,7 @@ input[type="text"], input[type="date"], select {
 }
 
 .logout-button:hover {
-    background-color: #d32f2f;
+    background-color: #429E72;
 }
 
 table {
@@ -114,7 +114,7 @@ th, td {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #429E72;
     color: #fff;
     font-weight: bold;
 }
@@ -151,9 +151,67 @@ button {
 }
 
 .save-button {
-    background-color: #4CAF50;
+    background-color: #429E72;
 }
 
 .delete-button {
     background-color: #f44336;
+}
+
+.details-row .edit-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form .form-group {
+    flex: 1 1 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.edit-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.save-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-button:hover,
+.delete-button:hover {
+    opacity: 0.9;
 }

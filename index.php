@@ -16,17 +16,17 @@ function listPessoas() {
     return $_SESSION['pessoas'];
 }
 
-function addPessoa($nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cidade, $estado, $telefone, $email) {
+function addPessoa($nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cep, $rua, $bairro, $cidade, $estado, $telefone, $email) {
     foreach ($_SESSION['pessoas'] as $pessoa) {
         if ($pessoa['cpf'] === $cpf) {
             return "Erro: CPF já cadastrado!";
         }
     }
-    $_SESSION['pessoas'][] = ['id' => uniqid(), 'nome' => $nome, 'cpf' => $cpf, 'dataNascimento' => $dataNascimento, 'genero' => $genero, 'estadoCivil' => $estadoCivil, 'cidade' => $cidade, 'estado' => $estado, 'telefone' => $telefone, 'email' => $email];
+    $_SESSION['pessoas'][] = ['id' => uniqid(), 'nome' => $nome, 'cpf' => $cpf, 'dataNascimento' => $dataNascimento, 'genero' => $genero, 'estadoCivil' => $estadoCivil, 'cep' => $cep, 'rua' => $rua, 'bairro' => $bairro, 'cidade' => $cidade, 'estado' => $estado, 'telefone' => $telefone, 'email' => $email];
     return "Pessoa cadastrada com sucesso!";
 }
 
-function editPessoa($id, $nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cidade, $estado, $telefone, $email) {
+function editPessoa($id, $nome, $cpf, $dataNascimento, $genero, $estadoCivil,$cep, $rua, $bairro, $cidade, $estado, $telefone, $email) {
     foreach ($_SESSION['pessoas'] as &$pessoa) {
         if ($pessoa['id'] === $id) {
             $pessoa['nome'] = $nome;
@@ -34,6 +34,9 @@ function editPessoa($id, $nome, $cpf, $dataNascimento, $genero, $estadoCivil, $c
             $pessoa['dataNascimento' ] = $dataNascimento;
             $pessoa['genero'] = $genero;
             $pessoa['estadoCivil'] = $estadoCivil;
+            $pessoa['cep'] = $cep;
+            $pessoa['rua'] = $rua;
+            $pessoa['bairro'] = $bairro;
             $pessoa['cidade'] = $cidade;
             $pessoa['estado'] = $estado;
             $pessoa['telefone'] = $telefone;
@@ -114,20 +117,30 @@ function deletePessoa($id) {
         </div>
 
         <div class="form-group">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required onblur="fetchAddressData()">
+        </div>
+
+        <div class="form-group">
+            <label for="rua">Logradouro</label>
+            <input type="text" id="rua" name="rua" placeholder="Rua/Avenida" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
+        </div>
+
+        <div class="form-group">
             <label for="cidade">Cidade</label>
-            <input type="text" name="cidade" placeholder="Digite sua cidade" required>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
         </div>
 
         <div class="form-group">
             <label for="estado">Estado</label>
-            <select name="estado" required>
-                <option value="">Selecione um estado</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="PR">Parana</option>
-                <option value="SP">São Paulo</option>
-                <option value="RJ">Rio de Janeiro</option>
-            </select>
+            <input type="text" id="estado" name="estado" placeholder="Estado" required>
         </div>
+
 
         <div class="form-group">
             <label for="telefone">Telefone</label>
@@ -156,15 +169,18 @@ function deletePessoa($id) {
         $dataNascimento = $_POST['dataNascimento'] ?? '';
         $genero = $_POST['genero'] ?? '';
         $estadoCivil = $_POST['estadoCivil'] ?? '';
+        $cep = $_POST['cep'] ?? '';
+        $rua = $_POST['rua'] ?? '';
+        $bairro = $_POST['bairro'] ?? '';
         $cidade = $_POST['cidade'] ?? '';
         $estado = $_POST['estado'] ?? '';
         $telefone = $_POST['telefone'] ?? '';
         $email = $_POST['email'] ?? '';
 
         if ($action === 'cadastrar') {
-            echo addPessoa($nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cidade, $estado, $telefone, $email);
+            echo addPessoa($nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cep, $rua, $bairro, $cidade, $estado, $telefone, $email);
         } elseif ($action === 'atualizar') {
-            echo editPessoa($id, $nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cidade, $estado, $telefone, $email);
+            echo editPessoa($id, $nome, $cpf, $dataNascimento, $genero, $estadoCivil,$cep, $rua, $bairro, $cidade, $estado, $telefone, $email);
         } elseif ($action === 'deletar') {
             echo deletePessoa($id);
         }
@@ -179,6 +195,9 @@ function deletePessoa($id) {
                 <th>Data Nascimento</th>
                 <th>Gênero</th>
                 <th>Estado Civil</th>
+                <th>CEP</th>
+                <th>Rua</th>
+                <th>Bairro</th>
                 <th>Cidade</th>
                 <th>Estado</th>
                 <th>Telefone</th>
@@ -192,6 +211,9 @@ function deletePessoa($id) {
                 <td><?php echo htmlspecialchars($pessoa['dataNascimento']); ?></td>
                 <td><?php echo htmlspecialchars($pessoa['genero']); ?></td>
                 <td><?php echo htmlspecialchars($pessoa['estadoCivil']); ?></td>
+                <td><?php echo htmlspecialchars($pessoa['cep']); ?></td>
+                <td><?php echo htmlspecialchars($pessoa['rua']); ?></td>
+                <td><?php echo htmlspecialchars($pessoa['bairro']); ?></td>
                 <td><?php echo htmlspecialchars($pessoa['cidade']); ?></td>
                 <td><?php echo htmlspecialchars($pessoa['estado']); ?></td>
                 <td><?php echo htmlspecialchars($pessoa['telefone']); ?></td>
@@ -202,7 +224,7 @@ function deletePessoa($id) {
             <?php endforeach; ?>
         </table>
 
-        <h1> Editar </h1>
+        <h2> Editar </h2>
         <table>
         <tr>
             <th>Nome Completo</th>
@@ -214,23 +236,78 @@ function deletePessoa($id) {
             <td><?php echo htmlspecialchars($pessoa['cpf']); ?></td>
         </tr>
         <tr class="details-row" style="display: none;">
-            <td colspan="2">
-                <form method="POST">
-                    <input type="hidden" name="id" value="<?php echo $pessoa['id']; ?>">
-                    <input type="text" name="nome" value="<?php echo htmlspecialchars($pessoa['nome']); ?>" required>
-                    <input type="text" name="cpf" value="<?php echo htmlspecialchars($pessoa['cpf']); ?>" required>
-                    <input type="date" name="dataNascimento" value="<?php echo htmlspecialchars($pessoa['dataNascimento']); ?>" required>
-                    <input type="text" name="genero" value="<?php echo htmlspecialchars($pessoa['genero']); ?>" required>
-                    <input type="text" name="estadoCivil" value="<?php echo htmlspecialchars($pessoa['estadoCivil']); ?>" required>
-                    <input type="text" name="cidade" value="<?php echo htmlspecialchars($pessoa['cidade']); ?>" required>
-                    <input type="text" name="estado" value="<?php echo htmlspecialchars($pessoa['estado']); ?>" required>
-                    <input type="text" name="telefone" value="<?php echo htmlspecialchars($pessoa['telefone']); ?>" required>
-                    <input type="email" name="email" value="<?php echo htmlspecialchars($pessoa['email']); ?>" required>
-                    <button type="submit" name="action" value="atualizar" class="save-button">Salvar</button>
-                    <button type="submit" name="action" value="deletar" class="delete-button">Deletar</button>
-                </form>
-            </td>
-        </tr>
+            
+        <td colspan="2">
+        <form method="POST" class="edit-form">
+            <input type="hidden" name="id" value="<?php echo $pessoa['id']; ?>">
+            
+            <div class="form-group">
+                <label>Nome Completo:</label>
+                <input type="text" name="nome" value="<?php echo htmlspecialchars($pessoa['nome']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>CPF:</label>
+                <input type="text" name="cpf" value="<?php echo htmlspecialchars($pessoa['cpf']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Data de Nascimento:</label>
+                <input type="date" name="dataNascimento" value="<?php echo htmlspecialchars($pessoa['dataNascimento']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gênero:</label>
+                <input type="text" name="genero" value="<?php echo htmlspecialchars($pessoa['genero']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Estado Civil:</label>
+                <input type="text" name="estadoCivil" value="<?php echo htmlspecialchars($pessoa['estadoCivil']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>CEP:</label>
+                <input type="text" name="cep" value="<?php echo htmlspecialchars($pessoa['cep']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Logradouro:</label>
+                <input type="text" name="rua" value="<?php echo htmlspecialchars($pessoa['rua']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Bairro:</label>
+                <input type="text" name="bairro" value="<?php echo htmlspecialchars($pessoa['bairro']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Cidade:</label>
+                <input type="text" name="cidade" value="<?php echo htmlspecialchars($pessoa['cidade']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Estado:</label>
+                <input type="text" name="estado" value="<?php echo htmlspecialchars($pessoa['estado']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Telefone:</label>
+                <input type="text" name="telefone" value="<?php echo htmlspecialchars($pessoa['telefone']); ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="email" value="<?php echo htmlspecialchars($pessoa['email']); ?>" required>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" name="action" value="atualizar" class="save-button">Salvar</button>
+                <button type="submit" name="action" value="deletar" class="delete-button">Deletar</button>
+            </div>
+        </form>
+    </td>
+</tr>
             <?php endforeach; ?>
         </table>
 
@@ -240,6 +317,29 @@ function deletePessoa($id) {
 <br>
 <br>
 
+<script>
+function fetchAddressData() {
+    const cep = document.getElementById('cep').value.replace(/\D/g, '');
+
+    if (cep.length === 8) { 
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+                if (!data.erro) {
+                    document.getElementById('rua').value = data.logradouro;
+                    document.getElementById('bairro').value = data.bairro;
+                    document.getElementById('cidade').value = data.localidade;
+                    document.getElementById('estado').value = data.uf;
+                } else {
+                    alert("CEP não encontrado.");
+                }
+            })
+            .catch(error => console.error('Erro ao buscar o endereço:', error));
+    } else {
+        alert("CEP inválido.");
+    }
+}
+</script>
     <script>
     function toggleDetails(row) {
         let detailsRow = row.nextElementSibling;
