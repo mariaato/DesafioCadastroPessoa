@@ -22,7 +22,27 @@ function addPessoa($nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cep, $r
             return "Erro: CPF já cadastrado!";
         }
     }
-    $_SESSION['pessoas'][] = ['id' => uniqid(), 'nome' => $nome, 'cpf' => $cpf, 'dataNascimento' => $dataNascimento, 'genero' => $genero, 'estadoCivil' => $estadoCivil, 'cep' => $cep, 'rua' => $rua, 'bairro' => $bairro, 'cidade' => $cidade, 'estado' => $estado, 'telefone' => $telefone, 'email' => $email];
+
+    date_default_timezone_set('America/Sao_Paulo'); 
+    $dataCadastro = date("d/m/Y H:i:s"); 
+    
+    $_SESSION['pessoas'][] = [
+        'id' => uniqid(), 
+        'nome' => $nome, 
+        'cpf' => $cpf, 
+        'dataNascimento' => $dataNascimento,
+        'genero' => $genero, 
+        'estadoCivil' => $estadoCivil, 
+        'cep' => $cep, 
+        'rua' => $rua, 
+        'bairro' => $bairro, 
+        'cidade' => $cidade, 
+        'estado' => $estado, 
+        'telefone' => $telefone, 
+        'email' => $email,
+        'dataCadastro' => $dataCadastro
+    ];
+
     return "Pessoa cadastrada com sucesso!";
 }
 
@@ -64,7 +84,7 @@ function deletePessoa($id) {
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Pessoas</title>
-    <link rel="stylesheet" href="estilo.css"> 
+    <link rel="stylesheet" href="style.css"> 
 
 </head>
 <body>
@@ -202,6 +222,7 @@ function deletePessoa($id) {
                 <th>Estado</th>
                 <th>Telefone</th>
                 <th>Email</th>
+                <th>Data de Cadastro</th>
 
             </tr>
             <?php foreach ($pessoas as $pessoa): ?>
@@ -218,6 +239,7 @@ function deletePessoa($id) {
                 <td><?php echo htmlspecialchars($pessoa['estado']); ?></td>
                 <td><?php echo htmlspecialchars($pessoa['telefone']); ?></td>
                 <td><?php echo htmlspecialchars($pessoa['email']); ?></td>
+                <td><?php echo htmlspecialchars($pessoa['dataCadastro']); ?></td>
                     
                
             </tr>
@@ -348,4 +370,14 @@ function fetchAddressData() {
     }
 </script>
 </body>
+<footer>
+    <p>&copy; 2024 Maria Antônia | Desafio Cadastro de Pessoas |</p>
+
+    <div class="social">
+        <a href="https://www.linkedin.com/in/maria-ant%C3%B4nia-dos-santos">Linkedin |</a>
+        <a href="https://github.com/mariaato">Github</a>
+    </div>
+    <p>  | Contato: mariaaatonha@gmail.com | Telefone: (48) 99857-6783</p>
+</footer>
+
 </html>

@@ -194,7 +194,7 @@ button {
 }
 
 .save-button {
-    background-color: #4CAF50;
+    background-color: #429E72;
     color: white;
     padding: 8px 12px;
     border: none;
@@ -214,4 +214,36 @@ button {
 .save-button:hover,
 .delete-button:hover {
     opacity: 0.9;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between; 
+    padding: 10px 20px; 
+    background-color: #429E72; 
+    color: #fff; 
+    font-size: 14px;
+
+    align-items: center;
+
+
+}
+
+footer p, 
+footer .social a {
+    margin: 1px; 
+}
+
+footer .social {
+    display: flex;
+    gap: 5px; 
+}
+
+footer .social a {
+    color: #fff; 
+    text-decoration: none; 
+}
+
+footer .social a:hover {
+    color: #ccc; /* Cor ao passar o mouse */
 }
