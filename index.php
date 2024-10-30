@@ -398,8 +398,8 @@ function fetchAddressData() {
     <p>&copy; 2024 Maria Antônia | Desafio Cadastro de Pessoas |</p>
 
     <div class="social">
-        <a href="https://www.linkedin.com/in/maria-ant%C3%B4nia-dos-santos">Linkedin |</a>
-        <a href="https://github.com/mariaato">Github</a>
+        <a href="https://www.linkedin.com/in/maria-ant%C3%B4nia-dos-santos" target="_blank">Linkedin |</a>
+        <a href="https://github.com/mariaato" target="_blank">Github</a>
     </div>
     <p>  | Contato: mariaaatonha@gmail.com | Telefone: (48) 99857-6783</p>
 </footer>
