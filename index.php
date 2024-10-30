@@ -77,6 +77,26 @@ function deletePessoa($id) {
     }
     return "Pessoa não encontrada.";
 }
+
+function validarCPF($cpf) {
+    $cpf = preg_replace('/[^0-9]/is', '', $cpf);
+
+    if (strlen($cpf) != 11 || preg_match('/(\d)\1{10}/', $cpf)) {
+        return false;
+    }
+
+    for ($t = 9; $t < 11; $t++) {
+        for ($d = 0, $c = 0; $c < $t; $c++) {
+            $d += $cpf[$c] * (($t + 1) - $c);
+        }
+        $d = ((10 * $d) % 11) % 10;
+        if ($cpf[$c] != $d) {
+            return false;
+        }
+    }
+    return true;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -198,7 +218,11 @@ function deletePessoa($id) {
         $email = $_POST['email'] ?? '';
 
         if ($action === 'cadastrar') {
-            echo addPessoa($nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cep, $rua, $bairro, $cidade, $estado, $telefone, $email);
+            if (!validarCPF($cpf)) {
+                echo "Erro: CPF inválido!";
+            } else {
+                echo addPessoa($nome, $cpf, $dataNascimento, $genero, $estadoCivil, $cep, $rua, $bairro, $cidade, $estado, $telefone, $email);
+            }
         } elseif ($action === 'atualizar') {
             echo editPessoa($id, $nome, $cpf, $dataNascimento, $genero, $estadoCivil,$cep, $rua, $bairro, $cidade, $estado, $telefone, $email);
         } elseif ($action === 'deletar') {

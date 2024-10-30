@@ -5,7 +5,7 @@ Este projeto foi desenvolvido como parte de um desafio para a vaga de Estágio e
 ## Funcionalidades
 
 - **Cadastro de Pessoas:** Formulário completo para inserir dados de identificação e contato de uma pessoa.
-- **Validação de CPF:** Evita a duplicação de cadastros ao verificar se o CPF já foi registrado.
+- **Validação de CPF:** Evita a duplicação de cadastros ao verificar se o CPF já foi registrado, realiza o cálculo de validação do CPF e verifica se o CPF está em um formato correto.
 - **Preenchimento automático de endereço:** Utiliza a API ViaCEP para preencher os dados de endereço ao inserir o CEP.
 - **Sessões em PHP:** Dados são armazenados em sessões, simulando um banco de dados em memória, conforme solicitado.
 - **CRUD Completo:** O sistema permite criar, ler, atualizar e deletar registros de pessoas.
@@ -21,9 +21,9 @@ O sistema foi construído utilizando PHP para o backend, HTML e CSS para o front
 
 ## Desafios e Soluções
 
-1. **Validação de CPF Duplicado**:
-   - *Desafio*: Evitar a duplicação de cadastros com o mesmo CPF.
-   - *Solução*: Implementada uma validação no backend que verifica se o CPF já está presente antes de permitir um novo cadastro.
+1. **Validação de CPF Duplicado e Cálculo de Validade**:
+   - *Desafio*: Evitar a duplicação de cadastros com o mesmo CPF e garantir que o CPF seja válido..
+   - *Solução*: Implementada uma validação no backend que verifica se o CPF já está presente e realiza o cálculo para garantir sua validade antes de permitir um novo cadastro.
 
 2. **Preenchimento Automático de Endereço via API ViaCEP**:
    - *Desafio*: Integrar o sistema com uma API externa para automatizar o preenchimento de endereço.
