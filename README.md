@@ -43,7 +43,7 @@ O sistema foi construído utilizando PHP para o backend, HTML e CSS para o front
 - **HTML/CSS**: Estrutura e estilo do frontend.
 - **API ViaCEP**: Preenchimento automático dos campos de endereço a partir do CEP.
 
-## Próximos Passos
+## Próximos Passos 👣
 
 - **Persistência de Dados**: Implementar um banco de dados real (por exemplo, SQLite ou MySQL) para persistir os dados.
 - **Testes Unitários**: Acrescentar testes unitários para verificar a integridade das operações CRUD e da validação de CPF.
