@@ -1,8 +1,8 @@
-# Sistema de Cadastro de Pessoas Físicas
+# Sistema de Cadastro de Pessoas Físicas 🧑🏽
 
 Este projeto foi desenvolvido como parte de um desafio para a vaga de Estágio em Suporte e Desenvolvimento de Sistemas. A proposta era criar um sistema de cadastro de pessoas físicas com operações de CRUD (Criar, Ler, Atualizar e Deletar), salvando os dados em um banco de dados em memória (session PHP), além de implementar validações para evitar cadastros duplicados.
 
-## Funcionalidades
+## Funcionalidades 🛠️
 
 - **Cadastro de Pessoas:** Formulário completo para inserir dados de identificação e contato de uma pessoa.
 - **Validação de CPF:** Evita a duplicação de cadastros ao verificar se o CPF já foi registrado, realiza o cálculo de validação do CPF e verifica se o CPF está em um formato correto.
@@ -11,7 +11,7 @@ Este projeto foi desenvolvido como parte de um desafio para a vaga de Estágio e
 - **CRUD Completo:** O sistema permite criar, ler, atualizar e deletar registros de pessoas.
 - **Interface com HTML e CSS:** A interface foi construída para simplificar a navegação e organização das informações.
   
-## Estrutura do Projeto
+## Estrutura do Projeto 🏗️
 
 O sistema foi construído utilizando PHP para o backend, HTML e CSS para o frontend, com as seguintes seções principais:
 
@@ -19,10 +19,10 @@ O sistema foi construído utilizando PHP para o backend, HTML e CSS para o front
 2. **Tabela de Registros**: exibe uma lista de pessoas cadastradas.
 3. **Formulário de Edição e Exclusão**: para editar e deletar registros diretamente na lista.
 
-## Desafios e Soluções
+## Desafios e Soluções 💥
 
 1. **Validação de CPF Duplicado e Cálculo de Validade**:
-   - *Desafio*: Evitar a duplicação de cadastros com o mesmo CPF e garantir que o CPF seja válido..
+   - *Desafio*: Evitar a duplicação de cadastros com o mesmo CPF e garantir que o CPF seja válido.
    - *Solução*: Implementada uma validação no backend que verifica se o CPF já está presente e realiza o cálculo para garantir sua validade antes de permitir um novo cadastro.
 
 2. **Preenchimento Automático de Endereço via API ViaCEP**:
@@ -37,7 +37,7 @@ O sistema foi construído utilizando PHP para o backend, HTML e CSS para o front
    - *Desafio*: Organizar o layout dos dados de forma limpa e acessível.
    - *Solução*: Desenvolvi uma interface simplificada com HTML e CSS, incluindo a funcionalidade de alternar entre visualização e edição.
 
-## Tecnologias Utilizadas
+## Tecnologias Utilizadas 🌐
 
 - **PHP**: Backend e manipulação de dados.
 - **HTML/CSS**: Estrutura e estilo do frontend.
